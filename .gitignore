@@ -1,0 +1,18 @@
+# ESP-IDF build outputs
+build/
+managed_components/
+dependencies.lock
+
+# CMake and Ninja generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+.ninja_*
+
+# Local editor files
+.vscode/
+
+# Python caches
+__pycache__/
+*.pyc

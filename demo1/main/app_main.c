@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+#include "driver/gpio.h"
+#include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "led_strip.h"
+#include "led_strip_rmt.h"
+
+#define RGB_LED_GPIO GPIO_NUM_48
+#define RGB_LED_COUNT 1
+
+static const char *TAG = "demo1_rgb";
+
+static void set_rgb(led_strip_handle_t led, uint8_t red, uint8_t green, uint8_t blue)
+{
+    ESP_ERROR_CHECK(led_strip_set_pixel(led, 0, red, green, blue));
+    ESP_ERROR_CHECK(led_strip_refresh(led));
+}
+
+void app_main(void)
+{
+    printf("hello GOOUUU ESP32-S3-CAM GPIO48 RGB demo\n");
+
+    led_strip_config_t strip_config = {
+        .strip_gpio_num = RGB_LED_GPIO,
+        .max_leds = RGB_LED_COUNT,
+        .led_model = LED_MODEL_WS2812,
+        .color_component_format = LED_STRIP_COLOR_COMPONENT_FMT_GRB,
+    };
+
+    led_strip_rmt_config_t rmt_config = {
+        .resolution_hz = 10 * 1000 * 1000,
+    };
+
+    led_strip_handle_t led = NULL;
+    ESP_ERROR_CHECK(led_strip_new_rmt_device(&strip_config, &rmt_config, &led));
+    ESP_LOGI(TAG, "GPIO48 RGB LED demo started");
+
+    while (1) {
+        ESP_LOGI(TAG, "red");
+        set_rgb(led, 32, 0, 0);
+        vTaskDelay(pdMS_TO_TICKS(700));
+
+        ESP_LOGI(TAG, "green");
+        set_rgb(led, 0, 32, 0);
+        vTaskDelay(pdMS_TO_TICKS(700));
+
+        ESP_LOGI(TAG, "blue");
+        set_rgb(led, 0, 0, 32);
+        vTaskDelay(pdMS_TO_TICKS(700));
+
+        ESP_LOGI(TAG, "white");
+        set_rgb(led, 24, 24, 24);
+        vTaskDelay(pdMS_TO_TICKS(700));
+
+        ESP_LOGI(TAG, "off");
+        set_rgb(led, 0, 0, 0);
+        vTaskDelay(pdMS_TO_TICKS(700));
+    }
+}
