@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-#include "driver/gpio.h"
-#include "esp_log.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "led_strip.h"
-#include "led_strip_rmt.h"
+#include "driver/gpio.h" // 这是 ESP-IDF 的 GPIO 驱动头文件。
+#include "esp_log.h" // 用于 ESP-IDF 日志系统。
+#include "freertos/FreeRTOS.h" // pdMS_TO_TICKS
+#include "freertos/task.h" // vTaskDelay
+#include "led_strip.h" // 这是 ESP-IDF 的 LED 灯带组件接口。
+#include "led_strip_rmt.h" // 这是 LED strip 使用 RMT 外设的实现相关头文件。
 
 #define RGB_LED_GPIO GPIO_NUM_48
 #define RGB_LED_COUNT 1

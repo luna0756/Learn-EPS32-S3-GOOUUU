@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 #include "driver/gpio.h"
@@ -7,6 +6,7 @@
 #include "freertos/task.h"
 
 #define DEMO_GPIO GPIO_NUM_2
+#define BLINK_INTERVAL_MS 1000
 
 static const char *TAG = "demo2_gpio";
 
@@ -21,6 +21,7 @@ void app_main(void)
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE,
     };
+
     ESP_ERROR_CHECK(gpio_config(&io_conf));
 
     int level = 0;
@@ -28,7 +29,9 @@ void app_main(void)
     while (1) {
         ESP_ERROR_CHECK(gpio_set_level(DEMO_GPIO, level));
         ESP_LOGI(TAG, "GPIO%d = %d", DEMO_GPIO, level);
+
         level = !level;
-        vTaskDelay(pdMS_TO_TICKS(1000));
+
+        vTaskDelay(pdMS_TO_TICKS(BLINK_INTERVAL_MS));
     }
 }

@@ -8,6 +8,8 @@
 demo0/   最小串口打印 demo
 demo1/   GPIO48 RGB/NeoPixel 小灯 demo
 demo2/   普通 GPIO 输出 demo
+demo3/   FreeRTOS 两个任务 demo
+demo4/   FreeRTOS 队列 demo
 docs/    教程、归档和历史记录
 ```
 
@@ -16,7 +18,9 @@ docs/    教程、归档和历史记录
 1. 先跑 `demo0`，确认 build/flash/monitor 流程。
 2. 再跑 `demo1`，确认 GPIO48 RGB 小灯可以控制。
 3. 再跑 `demo2`，学习普通 GPIO 输出。
-4. 之后每做一个新实验，复制一个新目录，例如 `demo3`。
+4. 再跑 `demo3`，学习 FreeRTOS 创建多个任务。
+5. 再跑 `demo4`，学习 FreeRTOS 队列传递消息。
+6. 之后每做一个新实验，复制一个新目录，例如 `demo5`。
 
 ## 常用命令
 
