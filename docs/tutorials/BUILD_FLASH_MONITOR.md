@@ -3,8 +3,7 @@
 适用于：
 
 ```text
-demo0
-demo1
+本目录下所有独立示例工程
 ```
 
 ## 1. 接线
@@ -17,21 +16,35 @@ demo1
 
 先不要同时接 `TTL` 和 `OTG`。
 
-## 2. 进入 demo 目录
+## 2. 进入示例目录
 
 例如：
 
 ```bash
-cd /home/stephen/Desktop/esp32/demo0
+cd /home/stephen/Desktop/esp32/01_minimal_serial
 ```
 
 或：
 
 ```bash
-cd /home/stephen/Desktop/esp32/demo1
+cd /home/stephen/Desktop/esp32/18_freertos_state_machine_system
 ```
 
-## 3. 加载 ESP-IDF
+## 3. 推荐运行方式
+
+每个示例目录都有 `run.sh`：
+
+```bash
+./run.sh
+```
+
+如果串口不是 `/dev/ttyUSB0`：
+
+```bash
+PORT=/dev/ttyACM0 ./run.sh
+```
+
+## 4. 手动加载 ESP-IDF
 
 每开一个新终端都执行一次：
 
@@ -39,7 +52,7 @@ cd /home/stephen/Desktop/esp32/demo1
 . ~/esp/esp-idf/export.sh
 ```
 
-## 4. 编译
+## 5. 手动编译
 
 ```bash
 idf.py build
@@ -52,7 +65,7 @@ idf.py fullclean
 idf.py build
 ```
 
-## 5. 查串口
+## 6. 查串口
 
 ```bash
 ls /dev/ttyACM* /dev/ttyUSB*
@@ -64,7 +77,7 @@ ls /dev/ttyACM* /dev/ttyUSB*
 /dev/ttyUSB0
 ```
 
-## 6. 烧录并看日志
+## 7. 手动烧录并看日志
 
 ```bash
 idf.py -p /dev/ttyUSB0 flash monitor
@@ -76,13 +89,13 @@ idf.py -p /dev/ttyUSB0 flash monitor
 idf.py -p /dev/ttyACM0 flash monitor
 ```
 
-## 7. 退出 monitor
+## 8. 退出 monitor
 
 ```text
 Ctrl + ]
 ```
 
-## 8. 常见问题
+## 9. 常见问题
 
 串口没有权限：
 
